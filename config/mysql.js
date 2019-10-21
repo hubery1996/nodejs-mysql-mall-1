@@ -4,7 +4,7 @@ let pool = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	password: 'root',
-	database: 'mall',
+	database: 'mall_admin',
 	multipleStatements: true,
 	// debug: true,
 });

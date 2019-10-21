@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : app
+ Source Server         : server_name
  Source Server Type    : MySQL
- Source Server Version : 50553
+ Source Server Version : 80017
  Source Host           : localhost:3306
- Source Schema         : mall
+ Source Schema         : mall_admin
 
  Target Server Type    : MySQL
- Target Server Version : 50553
+ Target Server Version : 80017
  File Encoding         : 65001
 
- Date: 15/10/2019 22:30:54
+ Date: 21/10/2019 11:12:11
 */
 
 SET NAMES utf8mb4;
@@ -53,8 +53,8 @@ CREATE TABLE `admin`  (
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '/images/avatar/default.jpg' COMMENT '头像',
   `tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '注册邮箱',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '登录时间',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `login_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '登录时间',
   `login_count` bigint(255) NOT NULL DEFAULT 1 COMMENT '登录次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
@@ -62,7 +62,7 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', '123456', '超级管理员', '男', '/images/avatar/default.jpg', '13475829262', NULL, '2019-05-14 20:39:31', '2019-10-15 19:28:07', 99);
+INSERT INTO `admin` VALUES (1, 'admin', '123456', '超级管理员', '男', '/images/avatar/default.jpg', '13475829262', NULL, '2019-05-14 20:39:31', '2019-10-21 10:34:11', 100);
 INSERT INTO `admin` VALUES (2, '15863008280', '123456', '黄小米', '女', '/images/avatar/default.jpg', '15863008280', NULL, '2019-05-11 18:21:37', '2019-08-04 23:35:34', 6);
 INSERT INTO `admin` VALUES (3, 'moz', '123', '黄渤', '男', '/images/avatar/default.jpg', '13475829262', NULL, '2019-10-11 12:03:12', '2019-10-12 00:49:06', 1);
 
@@ -94,8 +94,8 @@ CREATE TABLE `carts`  (
   `goods_id` int(10) NOT NULL COMMENT '商品id',
   `goods_num` int(10) NOT NULL COMMENT '商品数量',
   `status` tinyint(4) NULL DEFAULT 1 COMMENT '1-正常，0-禁用，-1-删除',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '购物车' ROW_FORMAT = Fixed;
 
@@ -192,6 +192,7 @@ INSERT INTO `categories` VALUES (81, '身体护理', 24, 3, '');
 INSERT INTO `categories` VALUES (82, '彩妆香氛', 24, 3, '');
 INSERT INTO `categories` VALUES (83, '居家清洁', 24, 3, '');
 INSERT INTO `categories` VALUES (84, '桌面办公', 20, 3, '');
+INSERT INTO `categories` VALUES (85, '测试三级', 30, NULL, '/images/common/0480ea40-f3ad-11e9-9d09-85895e4bd0f9.jpg');
 
 -- ----------------------------
 -- Table structure for goods
@@ -216,8 +217,8 @@ CREATE TABLE `goods`  (
   `brand` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品品牌',
   `detail` varchar(5000) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品详情',
   `freight` decimal(10, 0) NULL DEFAULT 0 COMMENT '商品运费',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品表' ROW_FORMAT = Dynamic;
 
@@ -234,6 +235,7 @@ INSERT INTO `goods` VALUES (25, 23, 75, 0, '探路者Toread男装棉T恤-TAJF819
 INSERT INTO `goods` VALUES (26, 23, 75, 0, 'AIRTEX亚特户外男女防晒衣轻薄透气弹力皮肤风衣夹克长款外套M2169&W2170', '弹力面料 防晒轻簿 中长款', 259.00, 300.00, 100.00, 0, 992, 8, '/images/goods/ef53fb50-e7b7-11e8-8eb5-2933d116d7fc_720.jpg', '/images/goods/ef53fb50-e7b7-11e8-8eb5-2933d116d7fc_360.jpg', '/images/goods/f0a6e120-e7b7-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/f1f13b70-e7b7-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/f2e119b0-e7b7-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/f41a0ee0-e7b7-11e8-8eb5-2933d116d7fc_720.jpg', 'AIRTEX', '<p><img src=\"/images/details/03eb2160-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width:100%;\"><img src=\"/images/details/05a83ab0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/06e638f0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/08607ce0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/0a104fc0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/0bb43bc0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/1f121e80-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/2121c4a0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/246e5790-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/26c0fa20-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/28c3cf00-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><br></p>', 0, '2018-11-14 10:51:24', NULL);
 INSERT INTO `goods` VALUES (27, 23, 72, 0, '永久（FOREVER）自行车24速山地车26寸转把双碟刹男女式学生单车 猎狐T01-A', '温馨提示：新疆西藏地区暂不支持配送，自行车属大件商品，如人为原因拒收，需客户承担运费\n每天14：30前发货，客服在线时间9点-17点\n★【11月12日-15日返场购车领券满399-30 另加送骑行手电 评价还送二重礼包】', 599.00, 700.00, 300.00, 0, 1000, 9, '/images/goods/6de67a60-e7b8-11e8-8eb5-2933d116d7fc_720.jpg', '/images/goods/6de67a60-e7b8-11e8-8eb5-2933d116d7fc_360.jpg', '/images/goods/6f328260-e7b8-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/708a9850-e7b8-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/7160d410-e7b8-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/73521cc0-e7b8-11e8-8eb5-2933d116d7fc_720.jpg', '永久', '<p><img src=\"/images/details/7a82c7b0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width:100%;\"><img src=\"/images/details/7bd78240-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/7d807750-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/7eb1a450-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/80547ee0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/81b60ab0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/837ce800-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/85267950-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><br></p>', 0, '2018-11-14 10:53:56', NULL);
 INSERT INTO `goods` VALUES (28, 23, 72, 0, '凤凰 高碳钢破风设计21速钳型刹越野学生车弯把公路车自行车', '用户需知：新疆西藏地区暂不支持配送，自行车属大件商品，如人为原因拒收商品，由用户自行承担退回所产生的运费！！！', 768.00, 900.00, 350.00, 0, 1000, 10, '/images/goods/b63efc60-e7b8-11e8-8eb5-2933d116d7fc_720.jpg', '/images/goods/b63efc60-e7b8-11e8-8eb5-2933d116d7fc_360.jpg', '/images/goods/b8042c00-e7b8-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/b95d5360-e7b8-11e8-8eb5-2933d116d7fc_720.jpg,/images/goods/ba73a560-e7b8-11e8-8eb5-2933d116d7fc_720.jpg', '凤凰', '<p><img src=\"/images/details/c11f8ff0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width:100%;\"><img src=\"/images/details/c2d667b0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/c47857e0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/c5d1cd60-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/c7597ed0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/ca644dd0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/cbf9e1f0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/cd84c7b0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/cef4d270-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/d1a684f0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/d3d090e0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/d5f93d40-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/d8684170-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/db0867c0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/defc1020-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/e18b6d90-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/e47c24e0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><img src=\"/images/details/f472c0c0-e7b8-11e8-8eb5-2933d116d7fc.jpg\" style=\"max-width: 100%;\"><br></p>', 0, '2018-11-14 10:57:06', NULL);
+INSERT INTO `goods` VALUES (29, 2, 30, 85, 'markdown', 'markdown', 3.00, 4.00, 3.00, 8, 3, 333333, '/images/goods/175fb1f0-f3ad-11e9-9d09-85895e4bd0f9_720.jpg', '/images/goods/175fb1f0-f3ad-11e9-9d09-85895e4bd0f9_360.jpg', '', 'markdown', '<pre><code># Vue编写markdown或者展示markdown<br><br>## 1、介绍mavonEditor<br><br>&gt;官网：https://md.zhystar.com/<br>&gt;github：https://github.com/hinesboy/mavonEditor<br><br>mavonEditor是基于Vue的markdown 编辑器插件，支持自定义界面，代码高亮，图片上传，这些在`github`中都有写到，相关资料可以去`github`查看<br><br>## 2、安装mavonEditor<br><br>```<br>$ npm install mavon-editor --save 或者<br>$ yarn add mavon-editor<br>```<br><br>在`main.js`中<br><br>```<br>import mavonEditor from \'mavon-editor\'<br>import \'mavon-editor/dist/css/index.css\'<br>Vue.use(mavonEditor)<br>```<br><br>## 3、使用mavonEditor编辑markdown<br><br>在`.vue`文件中<br><br>```<br>&lt;template&gt;<br>    &lt;div&gt;<br>        &lt;mavon-editor v-model=\"value\"/&gt;<br>    &lt;/div&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br>export default {<br>    data() {<br>        return {<br>            value: \'\',<br>            defaultData: \"preview\"<br>        };<br>    },<br>};<br>&lt;/script&gt;<br>```<br><br>打开页面显示可编辑的页面<br><br>![20180828145144186](C:\\Users\\ThinkPad\\Desktop\\20180828145144186.png)<br><br>| **name 名称** | **type 类型** | **default 默认值**                                           |<br>| ------------- | ------------- | ------------------------------------------------------------ |<br>| language      | zh-CN         | 语言选择，暂支持 zh-CN: 中文简体 ， en: 英文 ， fr: 法语, pt-BR: 葡萄牙语, ru: 俄语 |</code></pre><p><br></p>', 0, '2019-10-21 10:47:49', NULL);
 
 -- ----------------------------
 -- Table structure for icons
@@ -596,7 +598,7 @@ CREATE TABLE `order_goods`  (
   `goods_num` int(10) NULL DEFAULT NULL COMMENT '商品数量',
   `goods_price` double(20, 2) NULL DEFAULT NULL COMMENT '商品价格',
   `status` tinyint(4) NULL DEFAULT 1 COMMENT '0-禁用，1-正常，-1-删除',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单-商品表' ROW_FORMAT = Fixed;
 
@@ -645,16 +647,16 @@ CREATE TABLE `orders`  (
   `uid` int(10) NOT NULL COMMENT '用户id',
   `payment` double(20, 2) NULL DEFAULT NULL COMMENT '支付金额',
   `payment_type` tinyint(2) NULL DEFAULT NULL COMMENT '1-在线支付，1-货到付款',
-  `pay_time` datetime NULL DEFAULT NULL COMMENT '支付时间',
+  `pay_time` datetime(0) NULL DEFAULT NULL COMMENT '支付时间',
   `ship_fee` double(20, 2) NULL DEFAULT NULL COMMENT '邮费',
-  `ship_time` datetime NULL DEFAULT NULL COMMENT '发货时间',
+  `ship_time` datetime(0) NULL DEFAULT NULL COMMENT '发货时间',
   `ship_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '快递公司',
   `ship_number` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '快递单号',
-  `received_time` datetime NULL DEFAULT NULL COMMENT '收货时间',
-  `create_time` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `finish_time` datetime NULL DEFAULT NULL COMMENT '交易完成时间',
-  `close_time` datetime NULL DEFAULT NULL COMMENT '交易关闭时间',
+  `received_time` datetime(0) NULL DEFAULT NULL COMMENT '收货时间',
+  `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `finish_time` datetime(0) NULL DEFAULT NULL COMMENT '交易完成时间',
+  `close_time` datetime(0) NULL DEFAULT NULL COMMENT '交易关闭时间',
   `order_state` int(10) NULL DEFAULT 0 COMMENT '状态字典',
   `status` tinyint(4) NULL DEFAULT 1 COMMENT '1-正常，0-禁用，-1-删除',
   `refund_state` tinyint(4) NULL DEFAULT NULL COMMENT '退款状态',
@@ -756,8 +758,8 @@ CREATE TABLE `users`  (
   `sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '男' COMMENT '性别',
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT './images/avatar/default.jpg' COMMENT '头像',
   `tel` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
-  `create_time` datetime NOT NULL COMMENT '创建时间',
-  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '登录时间',
+  `create_time` datetime(0) NOT NULL COMMENT '创建时间',
+  `login_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0) COMMENT '登录时间',
   `login_count` bigint(255) NOT NULL DEFAULT 1 COMMENT '登录次数',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
